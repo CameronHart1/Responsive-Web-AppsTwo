@@ -1,0 +1,54 @@
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="stylesheet.css" />
+    <script src="IndexJava.js"></script>
+</head>
+
+<body onload="ForumFilterChanged()">
+    <div style="display: flex; justify-content: space-between; padding: 0px 2%;">
+        <h2 style="left: 10%"> Home </h2>
+        <h2 style="right: 10%"> Profile</h2>
+    </div>
+    <div>
+
+        <label class="switch">
+            <input type="checkbox" name="HomePageSwitch" value="MyGarden">
+            <span class="slider"></span>
+            <span class="text"></span>
+        </label>
+    </div>
+
+    </label>
+
+    </div>
+
+    <button class="SearchButton"> Search </button>
+
+    <div class="ForumBox">
+
+        <label class="ForumBoxSwitch" onchange="ForumFilterChanged()">
+            <input type="checkbox" name="Forum" value="MyThreads" checked>
+            <span class="ToggleButton"> My Threads </span>
+        </label>
+
+        <label class="ForumBoxSwitch" onchange="ForumFilterChanged()">
+            <input type="checkbox" name="Forum" value="Feed" checked>
+            <span class="ToggleButton"> Feed </span>
+        </label>
+
+        <label class="ForumBoxSwitch" onchange="ForumFilterChanged()">
+            <input type="checkbox" name="Forum" value="Groups" checked>
+            <span class="ToggleButton"> Groups </span>
+        </label>
+    </div>
+
+    <div>
+        <div id="Lines"></div>
+        <div id="ForumEntries">
+        </div>
+    </div>
+
+</body>
+
+</html>
