@@ -1,0 +1,8 @@
+task 1: HTML is quite intuitive to use, my first real time using a markup language and I can understand it well.
+
+task 2: I will need to look deeper into best practsises regarding inline CSS and how much to use,
+otherwise it might contaiminate my whole document.
+
+task 3: I like ODD languages so it's nice to use one in this class, it's not C# but it's not that different.
+
+task 4: the checkbox was pretty hard to settup, but it helped me gain a much larger understanding of how vue operates.

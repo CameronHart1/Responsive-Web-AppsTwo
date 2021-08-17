@@ -1,4 +1,4 @@
-# first-app
+# week-one
 
 ## Project setup
 ```

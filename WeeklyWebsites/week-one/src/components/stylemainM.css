@@ -1,0 +1,14 @@
+:is(p, h1) {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: plum;
+    margin-top: 60px;
+}
+
+.EntryPage {
+    width: 90%;
+    height: 400px;
+    background-color: aquamarine;
+}
