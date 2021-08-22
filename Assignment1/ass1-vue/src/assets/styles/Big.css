@@ -3,7 +3,7 @@ body {
     padding: 0
 }
 
-:is(h1, h2, p, a) {
+:is(h1, h2, p, a, button, label, switch) {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 40px;
 }
@@ -48,16 +48,15 @@ h2 {
 /*  End slider for my garden and social*/
 
 .SearchButton {
-    background-color: #825432;
+    background-color: #CEB7DE40;
     /* Purple Inactive */
     border: none;
     border-radius: 34px;
-    color: white;
+    color: black;
     cursor: pointer;
     width: 98%;
     left: 1%;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 16px;
+    font-size: 32px;
     margin: 15px 1%;
     padding: 15px 50px;
     text-align: left;
@@ -67,7 +66,7 @@ h2 {
 }
 
 .SearchButton:hover {
-    background-color: #b0e42f;
+    background-color: #CEB7DE60;
     color: black;
 }
 
@@ -103,42 +102,52 @@ h2 {
     height: 100%;
     border: none;
     border-radius: 34px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 16px;
-    padding-top: 15px;
+    font-size: 22px;
     text-align: center;
     user-select: none;
-    background-color: #825432;
-    color: white;
+    background-color: #CEB7DE40;
+    color: black;
 }
 
 input:checked+.ToggleButton {
-    background-color: #b0e42f;
+    background-color: #CEB7DE;
     color: black;
 }
 
 
 /* For the header bar */
 
-#header {
+#HeaderBack {
+    position: fixed;
+    display: block;
+    z-index: 10;
+    background-color: white;
+    top: 0;
     width: 100%;
-    margin-bottom: 20px;
-}
-
-#header>h1 {
-    height: fit-content;
+    height: 50px;
     margin: 0;
 }
 
 .FlexHeader {
     display: flex;
-    background-color: #b0e42f;
-    height: 50px;
     justify-content: space-around;
     align-items: center;
-    margin: 0;
 }
 
 .FlexHeader>a {
     font-size: 18px;
+}
+
+.HeaderShadow {
+    height: 100%;
+    box-shadow: 1px 2px 18px #211b0a20;
+}
+
+#appBod {
+    margin-top: 50px;
+}
+
+.MainLayout {
+    margin-left: 10%;
+    margin-right: 10%;
 }

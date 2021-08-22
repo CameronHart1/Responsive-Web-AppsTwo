@@ -2,7 +2,9 @@
 
 <template>
   <LandSwitch @click="LS()"></LandSwitch>
+  <div class="MainLayout">
   <router-view></router-view>
+  </div>
 </template>
 
 <script>
