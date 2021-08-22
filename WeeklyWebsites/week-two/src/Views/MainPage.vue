@@ -1,14 +1,10 @@
 <template>
-  <div>
-    <h1>something</h1>
+  <h1 style="margin-top:0;">something</h1>
+  <div class="EntryPage" id="bigdiv">
+    <h1>Lots of really important text</h1>
+    <p id="overw">hbdsgbahjbfgabgfkjfgh</p>
+    <ToDoList></ToDoList>
   </div>
-  <body>
-    <div class="EntryPage" id="bigdiv">
-      <h1>Lots of really important text</h1>
-      <p id="overw">hbdsgbahjbfgabgfkjfgh</p>
-      <ToDoList></ToDoList>
-    </div>
-  </body>
 
   <button
     class="but"
@@ -25,20 +21,15 @@
   </button>
 </template>
 
-
-
 <script>
-import ToDoList from "./components/ToDoList.vue";
+import ToDoList from "../components/ToDoList.vue";
 
 export default {
-  name: "MainM",
+  name: "MainPage",
   components: {
     ToDoList,
   },
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped src= '.\components\stylemainM.css'></style>
-
-
+<style scoped src= '..\components\stylemainM.css'></style>
