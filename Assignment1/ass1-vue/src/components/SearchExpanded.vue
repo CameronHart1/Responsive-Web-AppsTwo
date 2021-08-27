@@ -1,4 +1,6 @@
 <template>
+<!-- the component for the expanded search bar, the paragraphs will be replaced by ceratin filters
+will need a flexbox, with one element bing a form of variable filters that change depending on search type -->
   <div class="SearchBox">
     <input type="text" id="SearchText" placeholder="Search" />
     <div id="filters">

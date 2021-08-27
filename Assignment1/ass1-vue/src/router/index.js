@@ -6,7 +6,7 @@ import About from '../views/About.vue'
 import Social from '../views/PSocial.vue'
 import Garden from '../views/Pgarden.vue'
 
-
+// this lets me navigate between components, change the site path etc.
 const routes = [{
         path: '/profile',
         component: profile,

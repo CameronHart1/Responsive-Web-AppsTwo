@@ -1,6 +1,7 @@
 
 
 <template>
+<!-- this is the main profile page, with the switch that controls if the social or gardening profile view is active -->
   <LandSwitch @click="LS()"></LandSwitch>
   <div class="MainLayout">
     <router-view></router-view>

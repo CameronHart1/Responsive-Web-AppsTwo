@@ -1,4 +1,6 @@
 <template>
+<!-- currently a bland post that adds the text for each plant
+ need to make prettier later -->
   <div
     class="JournalDiv"
     style="border-bottom: 2px solid #211b0a20; border-radius: 2px"

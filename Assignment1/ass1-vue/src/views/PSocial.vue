@@ -4,12 +4,16 @@ import { OnClickOutside } from "@vueuse/components";
 </script>
 
 <template>
+<!-- The Profile social page -->
+
+<!-- THis is a wrapper for the search bar that detects when the user clicks out of it -->
   <OnClickOutside
     @trigger="
       ExSearch = false;
       SearchTran();
     "
   >
+  <!-- this button will show / hide the expanded search component -->
     <button
       :class="SearchClass"
       @click="
@@ -23,6 +27,8 @@ import { OnClickOutside } from "@vueuse/components";
     </button>
   </OnClickOutside>
 
+
+<!-- THe three buttons that control what threads are shown -->
   <div class="ForumBox">
     <ForumCat
       forum-title="My Forums"
@@ -44,6 +50,8 @@ import { OnClickOutside } from "@vueuse/components";
     ></ForumCat>
   </div>
 
+<!-- the box that manages the three forum columns, might be able to convert to its own components,
+ although that might make passing probs harder (passing arrays of objects) maybe not works now though -->
   <div id="ForumPosts">
 
     <div id="MyForums">
@@ -67,7 +75,7 @@ import { OnClickOutside } from "@vueuse/components";
       >
       </ForumMes>
     </div>
-    
+
     <div id="Groups">
       <h3>Groups</h3>
       <ForumMes
@@ -114,6 +122,8 @@ export default {
   components: { ForumCat, SearchExpanded, ForumMes },
   methods: {
     ForumOnToggle,
+    // lets me have a delay from when the class of searchbutton changes
+    //  (so I can make it pretty with transitions later)
     SearchTran() {
       if (this.ExSearch) {
         setTimeout(() => (this.SearchClass = "EmptySearch"), 100);

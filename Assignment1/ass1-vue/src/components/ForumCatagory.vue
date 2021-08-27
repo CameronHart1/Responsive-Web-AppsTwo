@@ -1,4 +1,5 @@
 <template>
+<!-- component for the forum type buttons -->
   <label class="ForumBoxSwitch">
     <input type="checkbox" v-bind:name="forumName" v-bind:value="forumValue" checked  @input="$emit('toggle',$event.target.value)">
     <span class="ToggleButton">{{ forumTitle }} </span>

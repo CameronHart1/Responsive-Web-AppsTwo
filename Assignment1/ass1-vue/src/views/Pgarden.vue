@@ -1,4 +1,5 @@
 <template>
+<!-- the view that holds the GardenPLan and GardenJournal -->
     <div id="GardenFlex">
     <GJ> </GJ>
     <GP> </GP>
