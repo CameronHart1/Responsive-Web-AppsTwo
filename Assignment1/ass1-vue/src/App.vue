@@ -1,42 +1,42 @@
 <template>
   <div id="app">
     <div id="HeaderBack">
-      <img src="./assets/Images/GardenIcon.svg"  style="width:50px; height:50px; left:0; position:absolute;">
-      <div :class="scrolled ? 'HeaderShadow' : ''">
-      <div class="FlexHeader">
-        <router-link to="/home">Home</router-link>
-        <router-link to="/about">About</router-link>
-      </div>
+      <!-- the little logo in the left -->
+      <img
+        src="./assets/Images/GardenIcon.svg"
+        style="width: 50px; height: 50px; left: 0; position: absolute; cursor: pointer;"
+        @mousedown="imgClick"
+      >
+      <div class="HeaderShadow">
+        <div class="FlexHeader">
+          <router-link to="/profile">Profile</router-link>
+          <router-link to="/about">About</router-link>
+        </div>
       </div>
     </div>
     <body id="appBod">
+      <!-- this is where we switch between our views, as the header will always be visisble and the footer will be at the bottom -->
       <router-view></router-view>
     </body>
+    <div id="botStuff"></div>
   </div>
 </template>
 
 <script>
+import router from "./router/index.js";
+
 export default {
   name: "App",
-  data() {
-    return {
-      scrolled: false,
-    };
-  },
-
-  methods: {
-    HeaderScroll() {
-      this.scrolled = window.scrollY > 0;
-    },
-  },
-
-  created() {
-    window.addEventListener("scroll", this.HeaderScroll);
-  },
+ methods:{
+   imgClick(){
+     router.push("/profile");
+   }
+ }
 };
+
 </script>
 
 <style>
-@import "./assets/styles/Big.css";
+@import "./assets/styles/Style.css";
 </style>
 

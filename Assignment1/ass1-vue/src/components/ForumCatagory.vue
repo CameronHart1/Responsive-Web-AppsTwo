@@ -1,14 +1,15 @@
 <template>
-  <label class="ForumBoxSwitch" onchange="ForumFilterChanged()">
-    <input type="checkbox" name={{ForumName}} value={{ForumValue}} checked />
-    <span class="ToggleButton">{{ ForumTitle }} </span>
+  <label class="ForumBoxSwitch">
+    <input type="checkbox" v-bind:name="forumName" v-bind:value="forumValue" checked  @input="$emit('toggle',$event.target.value)">
+    <span class="ToggleButton">{{ forumTitle }} </span>
   </label>
 </template>
 
 <script>
 export default 
 {
-    props:['ForumName','ForumValue','ForumTitle'],
+    props:['forumName','forumValue','forumTitle'],
+    emits:['toggle'],
 };
 </script>
 

@@ -1,9 +1,18 @@
-export function HeaderOnScroll() {
-    const header = document.getElementById('HeaderBack');
+export function ForumOnToggle(val) {
+    const myForumObj = document.getElementById("MyForums")
+    const feedObj = document.getElementById("Feed")
+    const groupObj = document.getElementById("Groups")
 
-    if (document.body.scrollTop == 0) {
-        header.style.borderBottomColor = 'white';
-    } else {
-        header.style.borderBottomColor = 'black';
+    switch (val) {
+        case "MyForum":
+            myForumObj.hidden = !myForumObj.hidden
+            break;
+        case "Feed":
+            feedObj.hidden = !feedObj.hidden
+            break;
+        case "Groups":
+            groupObj.hidden = !groupObj.hidden
+            break;
+
     }
 }

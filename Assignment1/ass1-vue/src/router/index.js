@@ -1,15 +1,15 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 
-import Landing from '../views/Landing.vue'
+import profile from '../views/ProfileHome.vue'
 import About from '../views/About.vue'
 
-import Social from '../views/LandingSocial.vue'
-import Garden from '../views/LandingGarden.vue'
+import Social from '../views/PSocial.vue'
+import Garden from '../views/Pgarden.vue'
 
 
 const routes = [{
-        path: '/home',
-        component: Landing,
+        path: '/profile',
+        component: profile,
         children: [{
                 path: 'social',
                 name: 'social',
@@ -21,10 +21,10 @@ const routes = [{
                 component: Garden
             }
         ],
-        redirect: '/home/social'
+        redirect: '/profile/social'
     },
     { path: '/about', component: About },
-    { path: '/', redirect: '/home/social' },
+    { path: '/', redirect: '/profile/social' },
 ]
 
 
