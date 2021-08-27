@@ -1,3 +1,5 @@
+/* The switch - the box around the slider */
+
 .switch {
     position: static;
     display: inline-block;
@@ -41,6 +43,9 @@
     border-radius: 0px 34px 34px 0px;
 }
 
+
+/* animation when it slides */
+
 input:checked+.slider:before {
     -webkit-transform: translateX(100%);
     -ms-transform: translateX(100%);
@@ -55,6 +60,7 @@ input:checked+.slider:before {
 /* Text for sliders*/
 
 .text {
+    cursor: pointer;
     color: black;
 }
 
@@ -79,14 +85,3 @@ input:checked+.slider:before {
     transition: .4s;
     color: black;
 }
-
-
-/*
-input:checked+.slider+.text:before {
-    color: black;
-}
-
-input:checked+.slider+.text:after {
-    color: white;
-}
-*/

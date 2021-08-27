@@ -6,11 +6,18 @@
 </template>
 
 <script>
+
+
 export default 
 {
-    props:['forumName','forumValue','forumTitle'],
+    props:{forumName:String,
+    forumValue:String,
+    forumTitle:String,
+    },
     emits:['toggle'],
+
 };
+
 </script>
 
 <style scoped>
