@@ -4,7 +4,8 @@
   </div>
     <div class="EntryPage">
       <h1>about page</h1>
-      <p>hbdsgbahjbfgabgfkjfgh</p>
+      <p>Totally a real picture of the webpage author / creator</p>
+      <img src ='..\assets\MeTotes.png'>
     </div>
 </template>
 
