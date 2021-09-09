@@ -14,6 +14,7 @@ import LandSwitch from "../../components/Pswitch.vue";
 
 export default {
   name: "Profile",
+  emits:[],
   methods: {
     LS() {
       var ob = document.getElementById("LandingSwitch");

@@ -14,7 +14,7 @@
           <router-link to="/home">Home</router-link>
           <router-link to="/about">About</router-link>
           <!-- if not logged in, login will  -->
-          <router-link v-if="login" to="/profile/{Username}">Profile</router-link>
+          <router-link v-if="login" :to="{name: 'profile', params: {username: this.Username}}">Profile</router-link>
           <router-link v-else to="/login">Login</router-link>
         </div>
       </div>
@@ -47,8 +47,9 @@ export default {
      router.push("/");
    },
    LoggedIn(user){
-     this.Username = user;
+     this.Username = String(user);
      router.push({name:'profile',params: { username: this.Username }})
+     this.login = true;
    },
  }
 };

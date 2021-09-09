@@ -45,15 +45,9 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
     if (to.path !== '/login') {
         if (to.matched.some(record => record.meta.requiresAuth)) {
-            // console.log(to.params.username + " " + store.state.AuthKey) + " " + to.params.username.split('').reverse().join('');
-            if (!(to.params.username.split('').reverse().join('') == store.state.AuthKey)) {
-                console.log("triggered")
-                next('/login')
-            }
-            next()
-        }
-        next()
-    }
-    next()
+            if (!(to.params.username.split('').reverse().join('') == store.state.AuthKey)) next('/login')
+            else next()
+        } else next()
+    } else next()
 })
 export default router

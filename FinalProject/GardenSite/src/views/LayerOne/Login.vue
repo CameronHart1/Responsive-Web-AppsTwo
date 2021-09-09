@@ -4,7 +4,7 @@
     <input type="password" name="Password" v-model="password" placeholder="Password"/>
   </div>
   <div>
-      <button name="LoginBut" @click="CheckAuth()"> Login </button>
+      <button id="LoginBut" v-on:click="CheckAuth()"> Login </button>
   </div>
 </template>
 
@@ -14,10 +14,11 @@ import store from '../../store/AuthData.js'
 export default {
   data()
 {
-    return {username: "",
-    password: ""}
+    return {
+        username: "",
+        password: ""}
   },
-  emits:["auth"],
+  emits:['auth'],
   methods:{
       CheckAuth(){
           // if the succesfully login they get an auth user
@@ -27,7 +28,7 @@ export default {
           // so the serve will assign unique authUser to logged in pc,
           // when accessing new / different users the server checks if the authUser is authorized 
           // to view that profile (so we can view public profiles but not edit stuff)
-          this.$emit("auth",this.username);
+          this.$emit('auth',this.username);
     }
   }
 };
