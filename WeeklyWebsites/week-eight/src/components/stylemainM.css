@@ -1,0 +1,54 @@
+:is(p, h1, a, p, label, li) {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: darkslategrey;
+}
+
+.EntryPage {
+    height: 100%;
+    min-height: 400px;
+    background-color: aquamarine;
+}
+
+body {
+    width: 80%;
+    background-color: azure;
+    margin: 0;
+    padding: 0;
+    margin-left: 10%;
+}
+
+
+/* For the header bar */
+
+#header {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#header>h1 {
+    height: fit-content;
+    margin: 0;
+}
+
+.FlexHeader {
+    display: flex;
+    background-color: aquamarine;
+    height: 50px;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0;
+}
+
+.FlexHeader>a {
+    font-size: 18px;
+}
+
+
+/* for the checklist */
+
+.striked:checked+span {
+    text-decoration: line-through;
+}

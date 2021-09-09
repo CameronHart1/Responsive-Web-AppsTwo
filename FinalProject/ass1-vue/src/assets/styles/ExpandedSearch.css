@@ -1,0 +1,33 @@
+/*  End slider for my garden and social*/
+
+.SearchBox {
+    /* Purple Inactive */
+    color: black;
+    font-size: 32px;
+    text-align: left;
+    text-decoration: none;
+    transition-duration: 0.2s;
+}
+
+#SearchText {
+    background-color: transparent;
+    border: white;
+    border-width: 0px;
+    border-bottom-width: 6px;
+    outline: none;
+    top: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: normal;
+    font-size: 28px;
+}
+
+#filters {
+    display: flex;
+    flex-wrap: wrap;
+    height: 200px;
+    font-size: 16px;
+}
+
+#filters>p {
+    margin: 10px;
+}

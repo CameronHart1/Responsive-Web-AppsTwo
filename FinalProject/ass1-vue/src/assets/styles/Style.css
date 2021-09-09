@@ -1,0 +1,175 @@
+/* disabling the default paddings */
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #a793b550;
+}
+
+
+/* settings for most of the text */
+
+:is(h1, h2, h3, h4, p, a, button, label, switch) {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: normal;
+    line-height: 40px;
+}
+
+a {
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+p {
+    line-height: 20px;
+}
+
+h1 {
+    font-size: 34px;
+}
+
+h2 {
+    font-size: 28px;
+    margin: 0;
+}
+
+h3 {
+    font-size: 22px;
+    margin-top: 5px;
+}
+
+h4 {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+
+/* Hide default HTML checkbox */
+
+.switch input {
+    position: absolute;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}
+
+
+/* the search button before it's clicked */
+
+.SearchButton {
+    background-color: #CEB7DE40;
+    /* Purple Inactive */
+    border: none;
+    border-radius: 34px;
+    color: black;
+    cursor: pointer;
+    width: 98%;
+    font-size: 32px;
+    margin: 15px 1%;
+    padding: 15px 50px;
+    text-align: left;
+    text-decoration: none;
+    display: inline-block;
+    transition: height 0.4s ease;
+}
+
+.SearchButton:hover {
+    background-color: #CEB7DE60;
+    color: black;
+}
+
+.EmptySearch {
+    background-color: #CEB7DE40;
+    /* Purple Inactive */
+    border: none;
+    border-radius: 34px;
+    color: black;
+    width: 98%;
+    font-size: 32px;
+    margin: 15px 1%;
+    padding: 15px 50px;
+    text-align: left;
+    text-decoration: none;
+    display: inline-block;
+    transition: height 0.4s ease;
+}
+
+
+/* For the header bar */
+
+#HeaderBack {
+    position: fixed;
+    display: block;
+    z-index: 10;
+    background-color: white;
+    top: 0;
+    width: 100%;
+    height: 50px;
+    margin: 0;
+}
+
+.FlexHeader {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-left: 50px;
+}
+
+.FlexHeader>a {
+    font-size: 18px;
+}
+
+.HeaderShadow {
+    height: 100%;
+    box-shadow: 1px 2px 18px #211b0a20;
+}
+
+
+/* making sure the body doesnt fall under the header*/
+
+#appBod {
+    padding-top: 60px;
+    height: fit-content;
+    background-color: white;
+    padding-bottom: 20px;
+}
+
+
+/* getting that column look on pages */
+
+.MainLayout {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+
+/* the footer will put some links copyright / fancy stuff in here */
+
+#botStuff {
+    width: 100%;
+    height: 200px;
+}
+
+
+/* garden stuff */
+
+#GardenFlex {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+}
+
+#PlanBod {
+    padding-left: 5px;
+    width: 100%;
+    height: 100%;
+}
+
+.JournalDiv {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}

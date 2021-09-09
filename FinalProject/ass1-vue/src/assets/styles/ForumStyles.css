@@ -1,0 +1,85 @@
+/* the flex box for 3 buttons / catagories */
+
+.ForumBox {
+    position: static;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 42px;
+}
+
+
+/* for the toggle buttons (actually checkboxes) */
+
+.ForumBoxSwitch {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    margin: 0px 1%;
+}
+
+
+/* hidding default checkbox */
+
+.ForumBoxSwitch input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.ToggleButton {
+    position: absolute;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 34px;
+    font-size: 22px;
+    text-align: center;
+    user-select: none;
+    background-color: #CEB7DE40;
+    color: black;
+}
+
+input:checked+.ToggleButton {
+    background-color: #CEB7DE;
+    color: black;
+}
+
+
+/* end of catagory stuff */
+
+
+/* flex box that holds all the posts */
+
+#ForumPosts {
+    margin-top: 10px;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-content: space-between;
+}
+
+
+/* the individual */
+
+#ForumPosts>div {
+    border-radius: 10px;
+    margin: 0 1%;
+    width: 100%;
+    background-color: #CEB7DE20;
+    text-align: center;
+}
+
+
+/* a little separator between posts */
+
+.ForumP {
+    display: block;
+    width: 100%;
+    height: 10px;
+    background-color: #FFFFFF99;
+}
