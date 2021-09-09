@@ -4,31 +4,29 @@ import { OnClickOutside } from "@vueuse/components";
 </script>
 
 <template>
-<!-- The Profile social page -->
+  <!-- The Profile social page -->
 
-<!-- THis is a wrapper for the search bar that detects when the user clicks out of it -->
+  <!-- THis is a wrapper for the search bar that detects when the user clicks out of it -->
   <OnClickOutside
     @trigger="
       ExSearch = false;
       SearchTran();
     "
   >
-  <!-- this button will show / hide the expanded search component -->
+    <!-- this button will show / hide the expanded search component -->
     <button
       :class="SearchClass"
       @click="
         ExSearch = true;
-        FocusTextBox();
         SearchTran();
       "
     >
+      <SearchExpanded ref="searchBox" v-if="ExSearch"></SearchExpanded>
       <h2 v-show="!ExSearch">Search</h2>
-      <SearchExpanded ref="searchBox" v-show="ExSearch"></SearchExpanded>
     </button>
   </OnClickOutside>
 
-
-<!-- THe three buttons that control what threads are shown -->
+  <!-- THe three buttons that control what threads are shown -->
   <div class="ForumBox">
     <ForumCat
       forum-title="My Forums"
@@ -50,10 +48,9 @@ import { OnClickOutside } from "@vueuse/components";
     ></ForumCat>
   </div>
 
-<!-- the box that manages the three forum columns, might be able to convert to its own components,
+  <!-- the box that manages the three forum columns, might be able to convert to its own components,
  although that might make passing probs harder (passing arrays of objects) maybe not works now though -->
   <div id="ForumPosts">
-
     <div id="MyForums">
       <h3>My Forums</h3>
       <ForumMes
@@ -90,10 +87,10 @@ import { OnClickOutside } from "@vueuse/components";
 </template>
 
 <script>
-import ForumCat from "../components/ForumCatagory.vue";
-import { ForumOnToggle } from "../assets/JS/AppScript";
-import SearchExpanded from "../components/SearchExpanded.vue";
-import ForumMes from "../components/ForumPost.vue";
+import ForumCat from "../../../components/ForumCatagory.vue";
+import { ForumOnToggle } from "../../../assets/JS/AppScript";
+import SearchExpanded from "../../../components/SearchExpanded.vue";
+import ForumMes from "../../../components/ForumPost.vue";
 
 export default {
   // searching var
@@ -126,19 +123,19 @@ export default {
     //  (so I can make it pretty with transitions later)
     SearchTran() {
       if (this.ExSearch) {
-        setTimeout(() => (this.SearchClass = "EmptySearch"), 100);
+        this.SearchClass = "EmptySearch";
+        // need to wait for it to exist before triggereing focus event
+        this.$nextTick(function () {
+          this.$refs.searchBox.FocusText();
+        });
       } else {
-        setTimeout(() => (this.SearchClass = "SearchButton"), 100);
+        this.SearchClass = "SearchButton";
       }
-    },
-    //focusing the textbox when search is clicked
-    FocusTextBox() {
-      this.$refs.searchBox.FocusText();
     },
   },
 };
 </script>
 
 <style scoped>
-@import "../assets/styles/ForumStyles.css";
+@import "../../../assets/styles/ForumStyles.css";
 </style>

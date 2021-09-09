@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import LandSwitch from "../components/Pswitch.vue";
-import router from "../router/index.js";
+import router from "../../router/index.js";
+import LandSwitch from "../../components/Pswitch.vue";
 
 export default {
   name: "Profile",
@@ -32,5 +32,5 @@ export default {
 </script>
 
 <style scoped>
-@import "../assets/styles/Pslider.css";
+@import "../../assets/styles/Pslider.css";
 </style>

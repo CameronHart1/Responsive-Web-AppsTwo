@@ -1,8 +1,8 @@
 <template>
-<!-- the component for the expanded search bar, the paragraphs will be replaced by ceratin filters
+  <!-- the component for the expanded search bar, the paragraphs will be replaced by ceratin filters
 will need a flexbox, with one element bing a form of variable filters that change depending on search type -->
-  <div class="SearchBox">
-    <input type="text" id="SearchText" placeholder="Search" />
+  <div class="SearchBox" id="SearchBoxId">
+    <input type="text" ref="Search" id="SearchText" placeholder="Search" />
     <div id="filters">
       <p>example filter</p>
       <p>example filter</p>
@@ -19,10 +19,8 @@ will need a flexbox, with one element bing a form of variable filters that chang
 export default {
   methods: {
     FocusText() {
-      //   need to wait for next tick as obj is unhiding itself
-      this.$nextTick(() => {
-        document.getElementById("SearchText").focus();
-      });
+      //   when unhiden fires focus event
+        this.$refs.Search.focus()
     },
   },
 };
