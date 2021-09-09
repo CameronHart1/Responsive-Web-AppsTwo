@@ -42,14 +42,18 @@ const router = createRouter({
     history: createWebHashHistory(),
     routes,
 })
-router.beforeEach((to, next) => {
+router.beforeEach((to, from, next) => {
     if (to.path !== '/login') {
         if (to.matched.some(record => record.meta.requiresAuth)) {
-            console.log(to.params.username + store.state.AuthKey);
-            if (!to.params.username.split('').reverse().join('') == store.state.AuthKey) {
-                next({ path: '/login' })
+            // console.log(to.params.username + " " + store.state.AuthKey) + " " + to.params.username.split('').reverse().join('');
+            if (!(to.params.username.split('').reverse().join('') == store.state.AuthKey)) {
+                console.log("triggered")
+                next('/login')
             }
+            next()
         }
+        next()
     }
+    next()
 })
 export default router
