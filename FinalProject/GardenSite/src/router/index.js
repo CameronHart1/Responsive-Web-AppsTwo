@@ -10,6 +10,10 @@ import store from '../store/AuthData.js'
 import Social from '../views/LayerTwo/ProfileVer/PSocial.vue'
 import Garden from '../views/LayerTwo/ProfileVer/Pgarden.vue'
 
+// dedicated pages
+import DedForum from '../views/LayerTwo/DedForum.vue'
+import DedJourn from '../views/LayerTwo/DedGardenJourn.vue'
+import DedPlan from '../views/LayerTwo/DedGardenPlan.vue'
 
 
 // this lets me navigate between components, change the site path etc.
@@ -31,6 +35,21 @@ const routes = [
                 path: 'garden',
                 name: 'garden',
                 component: Garden
+            },
+            {
+                path: 'forum',
+                name: 'forum',
+                component: DedForum
+            },
+            {
+                path: 'gardenJournal',
+                name: 'gardenJournal',
+                component: DedJourn
+            },
+            {
+                path: 'gardenPlan',
+                name: 'gardenPlan',
+                component: DedPlan
             }
         ],
     },

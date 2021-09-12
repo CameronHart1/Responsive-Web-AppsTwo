@@ -1,35 +1,48 @@
 <template>
   <div>
-    <input type="text" name="Username" v-model="username" placeholder="Username" />
-    <input type="password" name="Password" v-model="password" placeholder="Password"/>
+    <input
+      type="text"
+      name="Username"
+      v-model="username"
+      placeholder="Username"
+    />
+    <input
+      type="password"
+      name="Password"
+      v-model="password"
+      placeholder="Password"
+    />
   </div>
   <div>
-      <button id="LoginBut" v-on:click="CheckAuth()"> Login </button>
+    <button id="LoginBut" v-on:click="CheckAuth()">Login</button>
   </div>
 </template>
 
 <script>
-import store from '../../store/AuthData.js'
+import store from "../../store/AuthData.js";
+import router from "../../router/index.js";
 
 export default {
-  data()
-{
+  data() {
     return {
-        username: "",
-        password: ""}
+      username: "",
+      password: "",
+    };
   },
-  emits:['auth'],
-  methods:{
-      CheckAuth(){
-          // if the succesfully login they get an auth user
-          if(this.username != "" && this.password != ""){
-          store.commit('Replace',this.username.split('').reverse().join(''));
-          }
-          // so the serve will assign unique authUser to logged in pc,
-          // when accessing new / different users the server checks if the authUser is authorized 
-          // to view that profile (so we can view public profiles but not edit stuff)
-          this.$emit('auth',this.username);
-    }
-  }
+  emits: ["auth"],
+  methods: {
+    CheckAuth() {
+      // if the succesfully login they get an auth user
+      if (this.username != "" && this.password != "") {
+        store.commit("ReplaceKey", this.username.split("").reverse().join(""));
+        store.commit("ReplaceUser", this.username);
+
+        router.push({ name: "profile", params: { username: this.username } });
+      }
+      // so the serve will assign unique authUser to logged in pc,
+      // when accessing new / different users the server checks if the authUser is authorized
+      // to view that profile (so we can view public profiles but not edit stuff)
+    },
+  },
 };
 </script>

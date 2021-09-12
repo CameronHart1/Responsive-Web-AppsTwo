@@ -1,8 +1,8 @@
 
 
 <template>
-<!-- this is the main profile page, with the switch that controls if the social or gardening profile view is active -->
-  <LandSwitch @click="LS()"></LandSwitch>
+  <!-- this is the main profile page, with the switch that controls if the social or gardening profile view is active -->
+  <LandSwitch v-if="LoadSwitch" @click="LS()"></LandSwitch>
   <div class="MainLayout">
     <router-view></router-view>
   </div>
@@ -14,7 +14,21 @@ import LandSwitch from "../../components/Pswitch.vue";
 
 export default {
   name: "Profile",
-  emits:[],
+  data(){
+    return {
+      LoadSwitch: true,
+    }
+  },
+
+  emits: [],
+  beforeRouteUpdate(to, from, next) {
+    if (to.name == "garden" || to.name == "social") {
+      this.LoadSwitch = true;
+    } else {
+      this.LoadSwitch = false;
+    }
+    next()
+  },
   methods: {
     LS() {
       var ob = document.getElementById("LandingSwitch");
@@ -25,7 +39,7 @@ export default {
       }
     },
   },
-  
+
   components: {
     LandSwitch,
   },

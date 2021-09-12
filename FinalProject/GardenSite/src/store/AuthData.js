@@ -3,12 +3,15 @@ import { createStore } from 'vuex'
 
 const store = createStore({
     state() {
-        return { AuthKey: "temp", }
+        return { AuthKey: "", Username: "" }
     },
     mutations: {
-        Replace(state, n) {
+        ReplaceKey(state, n) {
             state.AuthKey = n;
-        }
+        },
+        ReplaceUser(state, n) {
+            state.Username = n;
+        },
     }
 
 })
