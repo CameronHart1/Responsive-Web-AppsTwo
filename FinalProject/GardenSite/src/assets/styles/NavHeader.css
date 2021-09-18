@@ -1,3 +1,16 @@
+/* For the header bar */
+
+#HeaderBack {
+    position: fixed;
+    display: block;
+    z-index: 10;
+    background-color: white;
+    top: 0;
+    width: 100%;
+    height: 50px;
+    margin: 0;
+}
+
 .FlexHeader {
     display: flex;
     justify-content: space-around;

@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import store from "../../store/AuthData.js";
+import store from "../../store/Store.js";
 import router from "../../router/index.js";
 
 export default {
@@ -30,12 +30,13 @@ export default {
     };
   },
   emits: ["auth"],
+
   methods: {
     CheckAuth() {
       // if the succesfully login they get an auth user
       if (this.username != "" && this.password != "") {
-        store.commit("ReplaceKey", this.username.split("").reverse().join(""));
-        store.commit("ReplaceUser", this.username);
+        store.commit("Auth/ReplaceKey", this.username.split("").reverse().join(""));
+        store.commit("Auth/ReplaceUser", this.username);
 
         router.push({ name: "profile", params: { username: this.username } });
       }

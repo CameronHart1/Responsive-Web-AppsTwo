@@ -48,15 +48,15 @@ import { OnClickOutside } from "@vueuse/components";
     ></ForumCat>
   </div>
 
-  <!-- the box that manages the three forum columns, might be able to convert to its own components,
- although that might make passing probs harder (passing arrays of objects) maybe not works now though -->
+  <!-- the box that manages the three forum columns, uses the filtered computed properties-->
   <div id="ForumPosts">
     <div id="MyForums">
       <h3>My Forums</h3>
       <ForumMes
         v-for="post in MyP"
-        :title="post.title"
-        :text="post.text"
+        :title="post.Title"
+        :text="post.Text"
+        :tags="post.Tags"
         :key="post.id"
       >
       </ForumMes>
@@ -66,8 +66,9 @@ import { OnClickOutside } from "@vueuse/components";
       <h3>Feed</h3>
       <ForumMes
         v-for="post in FeedP"
-        :title="post.title"
-        :text="post.text"
+        :title="post.Title"
+        :text="post.Text"
+        :tags="post.Tags"
         :key="post.id"
       >
       </ForumMes>
@@ -77,8 +78,9 @@ import { OnClickOutside } from "@vueuse/components";
       <h3>Groups</h3>
       <ForumMes
         v-for="post in GroupP"
-        :title="post.title"
-        :text="post.text"
+        :title="post.Title"
+        :text="post.Text"
+        :tags="post.Tags"
         :key="post.id"
       >
       </ForumMes>
@@ -95,32 +97,30 @@ import ForumMes from "../../../components/ForumPost.vue";
 export default {
   // searching var
   // current class of search bar
-  //lists of objects for forum posts
   data() {
     return {
       ExSearch: false,
       SearchClass: "SearchButton",
-      MyP: [
-        { title: "example", text: "ExampleText" },
-        { title: "example different", text: "ExampleText But unique" },
-      ],
-      FeedP: [
-        { title: "example very wired", text: "ExampleText IDK" },
-        { title: "example something different", text: "ExampleText stuff" },
-      ],
-      GroupP: [
-        { title: "example blah", text: "ExampleText blah" },
-        { title: " blah example", text: " blah blah ExampleText" },
-        { title: " blah blah blah", text: " blah blah Bored Test" },
-      ],
+      Posts: this.$store.state.Posts.ForumPosts,
     };
+  },
+
+// filtering the posts into the sections
+  computed: {
+    MyP: function () {
+      return this.Posts.filter((a) => a.Tags.includes("My"));
+    },
+    FeedP: function () {
+      return this.Posts.filter((a) => a.Tags.includes("Feed"));
+    },
+    GroupP: function () {
+      return this.Posts.filter((a) => a.Tags.includes("Group"));
+    },
   },
 
   components: { ForumCat, SearchExpanded, ForumMes },
   methods: {
     ForumOnToggle,
-    // lets me have a delay from when the class of searchbutton changes
-    //  (so I can make it pretty with transitions later)
     SearchTran() {
       if (this.ExSearch) {
         this.SearchClass = "EmptySearch";

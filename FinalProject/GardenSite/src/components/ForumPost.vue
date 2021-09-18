@@ -13,6 +13,7 @@ export default {
   props: {
     title: String,
     text: String,
+    tags: Array,
   },
 };
 </script>

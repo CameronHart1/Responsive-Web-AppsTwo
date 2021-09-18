@@ -5,7 +5,7 @@ import profile from '../views/LayerOne/ProfileHome.vue'
 import About from '../views/LayerOne/About.vue'
 import Home from '../views/LayerOne/Home.vue'
 import Login from '../views/LayerOne/Login.vue'
-import store from '../store/AuthData.js'
+import store from '../store/Store.js'
 
 import Social from '../views/LayerTwo/ProfileVer/PSocial.vue'
 import Garden from '../views/LayerTwo/ProfileVer/Pgarden.vue'
@@ -64,7 +64,7 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
     if (to.path !== '/login') {
         if (to.matched.some(record => record.meta.requiresAuth)) {
-            if (!(to.params.username.split('').reverse().join('') == store.state.AuthKey)) next('/login')
+            if (!(to.params.username.split('').reverse().join('') == store.state.Auth.AuthKey)) next('/login')
             else next()
         } else next()
     } else next()
