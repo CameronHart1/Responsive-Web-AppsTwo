@@ -1,4 +1,5 @@
-import { createStore } from 'vuex'
+import { createStore } from 'vuex';
+import createPersistedState from "vuex-persistedstate";
 
 // using modules in the store, can be accesed via this.$store.state.Posts (or.Auth)
 // in commits it's like a path so for state it "Posts/AddPost"
@@ -34,11 +35,17 @@ const AuthStuff = {
     },
 }
 
+const dataState = createPersistedState({
+    paths: ['Auth'],
+    storage: window.sessionStorage,
+})
+
 const store = createStore({
     modules: {
         Auth: AuthStuff,
         Posts: Post,
-    }
+    },
+    plugins: [dataState]
 
 })
 

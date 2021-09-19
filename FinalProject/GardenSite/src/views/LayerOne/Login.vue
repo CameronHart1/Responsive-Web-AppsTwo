@@ -37,8 +37,8 @@ export default {
       if (this.username != "" && this.password != "") {
         store.commit("Auth/ReplaceKey", this.username.split("").reverse().join(""));
         store.commit("Auth/ReplaceUser", this.username);
-
-        router.push({ name: "profile", params: { username: this.username } });
+        const redirectPath = this.$route.query.redirect || 'profile';
+        router.push({ name: redirectPath, params: { username: this.username } });
       }
       // so the serve will assign unique authUser to logged in pc,
       // when accessing new / different users the server checks if the authUser is authorized

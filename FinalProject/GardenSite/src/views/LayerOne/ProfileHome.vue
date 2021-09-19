@@ -14,22 +14,32 @@ import LandSwitch from "../../components/Pswitch.vue";
 
 export default {
   name: "Profile",
-  data(){
+  data() {
     return {
       LoadSwitch: true,
-    }
+    };
   },
 
   emits: [],
+  // on entering page / ropute changing (different to refresh)
   beforeRouteUpdate(to, from, next) {
-    if (to.name == "garden" || to.name == "social") {
-      this.LoadSwitch = true;
-    } else {
-      this.LoadSwitch = false;
-    }
-    next()
+    this.checkslider(to.name);
+    next();
+  },
+  // on refresh
+  mounted() {
+    this.checkslider(this.$route.name);
   },
   methods: {
+    // mehtod for checkming if slider is needed
+    checkslider(ToCheck) {
+      if (ToCheck == "garden" || ToCheck == "social") {
+        this.LoadSwitch = true;
+      } else {
+        this.LoadSwitch = false;
+      }
+    },
+
     LS() {
       var ob = document.getElementById("LandingSwitch");
       if (ob.checked == true) {
