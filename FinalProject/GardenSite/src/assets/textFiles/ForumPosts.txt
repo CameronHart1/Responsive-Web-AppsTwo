@@ -1,9 +1,9 @@
-Title,Content,My.Tags.this.that
-Another Title, More Content,My.No Tags
-example,ExampleText,My
-example different,ExampleText But unique,My
-example very wired, ExampleText IDK,Feed
-example something different,ExampleText stuff,Feed
-example blah,ExampleText blah,Group
-blah example,blah blah ExampleText,Group
-blah blah blah,blah blah Bored Test,Group 
+Title,Content,My.Tags.this.that,[0,1]
+Another Title, More Content,My.No Tags,[]
+example,ExampleText,My,[]
+example different,ExampleText But unique,My,[]
+example very wired, ExampleText IDK,Feed,[]
+example something different,ExampleText stuff,Feed,[]
+example blah,ExampleText blah,Group,[]
+blah example,blah blah ExampleText,Group,[]
+blah blah blah,blah blah Bored Test,Group,[] 

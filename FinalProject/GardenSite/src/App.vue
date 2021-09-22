@@ -79,31 +79,36 @@
 import router from "./router/index.js";
 import store from "./store/Store.js";
 import data from "raw-loader!./assets/textFiles/ForumPosts.txt";
+import replyData from "raw-loader!./assets/textFiles/ForumReplies.txt";
+import { PostDeserializer, ReplytDeserializer } from './assets/JS/AppScript.js';
 
 export default {
   name: "App",
   mounted() {
-    function DeSerialForum(txt) {
-      var lineArray = txt.split('\n');
-      var output = [];
-      for (var i = 0; i < lineArray.length; i++) {
-        var data = lineArray[i].slice(0,-1).split(',');
-        output.push(data);
-      }
+    PostDeserializer(this,data)
+    ReplytDeserializer(this,replyData)
 
-      return output;
-    }
-// ideally the store already has this information from server, but not hosting on server so we are just running this when we mount app
+//     function DeSerialForum(txt) {
+//       var lineArray = txt.split('\n');
+//       var output = [];
+//       for (var i = 0; i < lineArray.length; i++) {
+//         var data = lineArray[i].slice(0,-1).split(',');
+//         output.push(data);
+//       }
 
-    var ToStore = DeSerialForum(data);
-    for (var i = 0; i < ToStore.length; i++) {
-      this.$store.commit(
-        "Posts/AddPost",
-        {'t':ToStore[i][0],
-        'tt':ToStore[i][1],
-        'ttt':ToStore[i][2].split('.'),}
-      );
-    }
+//       return output;
+//     }
+// // ideally the store already has this information from server, but not hosting on server so we are just running this when we mount app
+
+//     var ToStore = DeSerialForum(data);
+//     for (var i = 0; i < ToStore.length; i++) {
+//       this.$store.commit(
+//         "Posts/AddPost",
+//         {'t':ToStore[i][0],
+//         'tt':ToStore[i][1],
+//         'ttt':ToStore[i][2].split('.'),}
+//       );
+//     }
   },
 
   computed: {

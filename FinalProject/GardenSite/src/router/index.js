@@ -14,6 +14,7 @@ import Garden from '../views/LayerTwo/ProfileVer/Pgarden.vue'
 import DedForum from '../views/LayerTwo/DedForum.vue'
 import DedJourn from '../views/LayerTwo/DedGardenJourn.vue'
 import DedPlan from '../views/LayerTwo/DedGardenPlan.vue'
+import Post from '../views/LayerTwo/ForumPostPage.vue'
 
 
 // this lets me navigate between components, change the site path etc.
@@ -38,9 +39,15 @@ const routes = [
             },
             // adding  Forum will have two queries, Search and an array of tags
             {
-                path: 'forum/',
+                path: 'forum',
                 name: 'forum',
                 component: DedForum
+            },
+            {
+                path: 'Post/:PostID',
+                name: 'Post',
+                component: Post
+
             },
             {
                 path: 'gardenJournal',

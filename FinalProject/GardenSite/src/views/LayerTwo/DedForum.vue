@@ -26,6 +26,7 @@ import { OnClickOutside } from "@vueuse/components";
     </button>
   </OnClickOutside>
 
+<!-- all our posts being looped through -->
   <div style="background-color: #ceb7de40">
     <h3>Posts</h3>
     <ForumMes
@@ -33,7 +34,8 @@ import { OnClickOutside } from "@vueuse/components";
       :title="post.Title"
       :text="post.Text"
       :tags="post.Tags"
-      :key="post.id"
+      :key="post.ID"
+      @click="router.push({ name:'Post', params: { PostID: post.ID} });"
     >
     </ForumMes>
   </div>
@@ -42,6 +44,7 @@ import { OnClickOutside } from "@vueuse/components";
 <script>
 import SearchExpanded from "../../components/SearchExpanded.vue";
 import ForumMes from "../../components/ForumPost.vue";
+import router from "../../router/index.js";
 
 export default {
   data() {
