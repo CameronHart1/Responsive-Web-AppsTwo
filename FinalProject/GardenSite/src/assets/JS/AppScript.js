@@ -106,8 +106,7 @@ export function ReplytDeserializer(instance, data) {
 
         //splitting by commas excludiong in [] works for comments
         function SplitExcludeSB(inp) {
-            console.log(inp)
-                // using regex to ignor inbetween []
+            // using regex to ignor inbetween []
             var reg = /,(?![^[]*\])/; //
             var tmparray = inp.split(reg);
             // sliceing unwanted []

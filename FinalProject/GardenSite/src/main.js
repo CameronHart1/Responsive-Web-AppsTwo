@@ -7,7 +7,6 @@ import store from './store/Store.js'
 
 
 const app = createApp(App).use(Vuex);
-
 // router stuff
 app.use(router);
 app.use(store).mount('#app');
