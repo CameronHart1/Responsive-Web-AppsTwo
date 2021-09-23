@@ -2,6 +2,9 @@ import { createStore } from 'vuex';
 import createPersistedState from "vuex-persistedstate";
 // import { UpdateTxtFile } from '../assets/JS/AppScript.js';
 
+// unfortunatly I cant really save stuff perminently as that would require using a server and fetching from databases,
+// I don't think that's relevant to the module and i dont want to waste time so everything is currently server side.
+
 // using modules in the store, can be accesed via this.$store.state.Posts (or.Auth)
 // in commits it's like a path so for state it "Posts/AddPost"
 // for global storgae of everything
@@ -22,7 +25,6 @@ const Post = {
 
         // Parent id and Reply id, updaeing the stored vals and adding to.TXT file
         UpdateReply(state, { Pid, Rid }) {
-            console.log("Reply Tr4ig")
             state.ForumReplies[Pid].Replies.push("" + Rid);
             // trying to save to local file, doesnt want to work so come back to it
             // const tmpReply = state.ForumReplies.find(a => a.ID == state.ForumReplies[Pid].Replies.at(-1).ID);
@@ -31,7 +33,6 @@ const Post = {
             //     (tmpReply.ID + "," + tmpReply.Comment + "," + "[" + tmpReply.Replies.join(",") + "]"))
         },
         UpdatePost(state, { Pid, Rid }) {
-            console.log("post Tr4ig")
             state.ForumPosts[Pid].Replies.push("" + Rid);
             // const tmpPost = state.ForumPosts[Pid];
 
@@ -41,10 +42,71 @@ const Post = {
     },
 }
 
+// data for plants
+const plants = {
+    namespaced: true,
+    state() {
+        return { Plants: [] }
+    },
+    mutations: {
+        AddPlant(state, { name, color, instructions }) {
+            state.Plants.push({ Name: name, Color: color, Instructions: instructions });
+        },
+    },
+}
+
+// for data that is ascosiated with users (login getting token, stored plans or journals)
+const userData = {
+    namespaced: true,
+    state() {
+        return {
+            User: [],
+            PlantPlan: [],
+            PlantJournal: []
+        }
+    },
+    mutations: {
+        // Init
+        AddUser(state, { username, password, plans, journal, active }) {
+            state.User.push({ Username: username, Password: password, Plans: plans, Journal: journal, Active: active })
+        },
+        AddPlan(state, { id, name, plants }) {
+            state.PlantPlan.push({ ID: id, Name: name, Plants: plants })
+        },
+        AddJournal(state, { id, instructions, conPlan }) {
+            state.PlantJournal.push({ ID: id, Intructions: instructions, ConPlan: conPlan })
+        },
+
+        // Misc
+        UpdateUserPlan(state, { username, planId }) {
+            if (state.User[state.User.findIndex(e => e.Username == username)].Plans == undefined)
+                state.User[state.User.findIndex(e => e.Username == username)].Plans = [planId];
+            else
+                state.User[state.User.findIndex(e => e.Username == username)].Plans.push(planId);
+        },
+        SaveUserPlan(state, { plan, id }) {
+            state.PlantPlan[state.PlantPlan.findIndex(e => e.ID == id)] = plan;
+        },
+    },
+    getters: {
+        GetUserData: (state) => (username) => {
+            var tmp = state.User.find(e => e.Username == username);
+            return (tmp == undefined) ? undefined : { Plans: tmp.Plans, Journals: tmp.Journal, Active: tmp.Active }
+        },
+        GetPlanByID: (state) => (id) => {
+            return state.PlantPlan.find(e => e.ID == id)
+        },
+        GetJournalByID: (state) => (id) => {
+            return state.PlantJournal.find(e => e.ID == id)
+        },
+    },
+}
+
+// for small bits of session to session data (login token, entered Usernam, PAth)
 const AuthStuff = {
     namespaced: true,
     state() {
-        return { AuthKey: "", Username: "", path: "" }
+        return { AuthKey: "", Username: "", path: "", }
     },
     mutations: {
         ReplaceKey(state, n) {
@@ -60,7 +122,7 @@ const AuthStuff = {
 }
 
 const dataState = createPersistedState({
-    paths: ['Auth'],
+    paths: ['Auth', 'UserData'],
     storage: window.sessionStorage,
 })
 
@@ -68,6 +130,8 @@ const store = createStore({
     modules: {
         Auth: AuthStuff,
         Posts: Post,
+        UserData: userData,
+        Plants: plants
     },
     plugins: [dataState]
 

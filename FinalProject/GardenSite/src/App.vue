@@ -80,13 +80,16 @@ import router from "./router/index.js";
 import store from "./store/Store.js";
 import data from "raw-loader!./assets/textFiles/ForumPosts.txt";
 import replyData from "raw-loader!./assets/textFiles/ForumReplies.txt";
-import { PostDeserializer, ReplytDeserializer } from './assets/JS/AppScript.js';
+import dataPlant from "raw-loader!./assets/textFiles/PlantDB.txt";
+import { PostDeserializer, ReplytDeserializer, PlantsDeserializer } from './assets/JS/AppScript.js';
 
 export default {
   name: "App",
   mounted() {
     PostDeserializer(this,data)
     ReplytDeserializer(this,replyData)
+    PlantsDeserializer(this,dataPlant)
+    this.$store.commit("UserData/AddUser",{username:"Cameron",password:"LOL",Plans:[String], Journal:[String], Active: {Journal:"",Plan:""} })
 
 //     function DeSerialForum(txt) {
 //       var lineArray = txt.split('\n');

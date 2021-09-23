@@ -1,5 +1,5 @@
 <template>
-  <div style="width:100%; padding-right: 5px; flex-grow:1;">
+  <div style="width:90%; padding-right: 5px; flex-grow:1;">
     <h2 style="text-align:center; margin-bottom:20px;">Garden journel</h2>
 
 <!-- the flexbox that will hold the list of journal entries from the selected hournal -->

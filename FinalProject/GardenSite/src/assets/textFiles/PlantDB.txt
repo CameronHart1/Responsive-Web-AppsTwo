@@ -1,0 +1,2 @@
+Sunflower,#f5e042,Water,,,Water,,,Sun
+Lily,#b498b5,Water,,,,,Water,Sun

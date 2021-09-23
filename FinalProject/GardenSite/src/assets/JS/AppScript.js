@@ -119,6 +119,34 @@ export function ReplytDeserializer(instance, data) {
 
 }
 
+export function PlantsDeserializer(instance, data) {
+    var ToStore = SplittingLines(data);
+    // pushing to store
+    for (var j = 0; j < ToStore.length; j++) {
+        instance.$store.commit(
+            "Plants/AddPlant", {
+                'name': ToStore[j][0],
+                'color': ToStore[j][1],
+                'instructions': ToStore[j].slice(2, 9 + 1),
+            }
+        );
+
+    }
+
+    function SplittingLines(txt) {
+        // splitting into lines
+        var lineArray = txt.split('\n');
+        //output array
+        var output = [];
+        for (var i = 0; i < lineArray.length; i++) {
+            var data = lineArray[i].split(',');
+            output.push(data);
+        }
+
+        return output;
+    }
+}
+
 // export function UpdateTxtFile(Path, data) {
 //     const fs = require('fs');
 //     fs.appendFileSync(Path, data, 'utf-8')
