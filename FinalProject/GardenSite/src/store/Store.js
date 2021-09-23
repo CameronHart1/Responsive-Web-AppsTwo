@@ -106,7 +106,7 @@ const userData = {
 const AuthStuff = {
     namespaced: true,
     state() {
-        return { AuthKey: "", Username: "", path: "", }
+        return { AuthKey: "", Username: "", path: "", BigWindow: true }
     },
     mutations: {
         ReplaceKey(state, n) {
@@ -118,6 +118,10 @@ const AuthStuff = {
         ReplacePath(state, n) {
             state.path = n;
         },
+        IsBig(state, n) {
+            state.BigWindow = n;
+        }
+
     },
 }
 

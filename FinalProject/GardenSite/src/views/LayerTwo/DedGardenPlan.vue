@@ -62,19 +62,23 @@ export default {
     if (this.SelectedPlan != undefined)
       if (this.SelectedPlan.Plants != undefined)
         this.Shapes = this.SelectedPlan != {} ? this.SelectedPlan.Plants : [];
-    this.DrawScene()
+    this.DrawScene();
   },
 
   created() {
     this.Plan = this.ExistingPlans ? this.UserPlans.Plans[0] : "";
     let val = this.UserPlans;
-      if (this.ExistingPlans)
-        if (val.Active != undefined)
-          if (val.Active.Plan != undefined)
-            this.Plan = this.UserPlans.Plans[val.Active.Plan];
+    if (this.ExistingPlans)
+      if (val.Active != undefined)
+        if (val.Active.Plan != undefined)
+          this.Plan = this.UserPlans.Plans[val.Active.Plan];
   },
 
   computed: {
+    // used to mod sclae when in small window
+    Scale(){
+      return (this.$store.state.Auth.BigWindow) ? 1 : 2;
+    },
     ExistingPlans() {
       if (this.UserPlans != undefined)
         if (this.UserPlans.Plans != undefined) {
@@ -109,22 +113,23 @@ export default {
   watch: {
     Plan: {
       handler() {
-          if (
-            this.SelectedPlan.Plants != undefined &&
-            this.SelectedPlan.Plants.length > 0
-          )
-            this.Shapes = this.SelectedPlan.Plants;
-          else {
-            this.Shapes = [];
-          }
+        if (
+          this.SelectedPlan.Plants != undefined &&
+          this.SelectedPlan.Plants.length > 0
+        )
+          this.Shapes = this.SelectedPlan.Plants;
+        else {
+          this.Shapes = [];
+        }
       },
-      deep:true
+      deep: true,
     },
 
     Shapes: {
       deep: true,
       handler() {
-        this.DrawScene()
+        this.SavePlan();
+        this.DrawScene();
       },
     },
   },
@@ -132,9 +137,9 @@ export default {
     // triggered when mouse up or down on the cnavas, will route to all the tools
     getMousePos(evnt, end) {
       var rect = evnt.target.getBoundingClientRect();
-      var x = evnt.clientX - rect.left;
-      var y = evnt.clientY - rect.top;
-
+      var x = (evnt.clientX  - rect.left ) * this.Scale;
+      var y = (evnt.clientY  - rect.top ) * this.Scale;
+console.log(x + " " + y) 
       // using a switch to control the tools
       switch (this.Tool) {
         case "Draw":
@@ -214,20 +219,20 @@ export default {
       }
     },
     // so we can draw after mounting (or when values in SelectedPlan haven't changed)
-    DrawScene(){
-        if (this.Shapes.length >= 0 && this.CanvasVar.canvas != undefined) {
-          this.CanvasVar.clearRect(0, 0, this.canvas.width, this.canvas.height);
-          this.Shapes.forEach((e) => {
-            this.CanvasVar.fillStyle = e.plant.Color;
-            this.CanvasVar.fillRect(e.x, e.y, e.width, e.height);
+    DrawScene() {
+      if (this.Shapes.length >= 0 && this.CanvasVar.canvas != undefined) {
+        this.CanvasVar.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.Shapes.forEach((e) => {
+          this.CanvasVar.fillStyle = e.plant.Color;
+          this.CanvasVar.fillRect(e.x, e.y, e.width, e.height);
 
-            //all highlight selected
-            if (e.selected) {
-              this.CanvasVar.fillStyle = "#38383840";
-              this.CanvasVar.fillRect(e.x, e.y, e.width, e.height);
-            }
-          });
-        }
+          //all highlight selected
+          if (e.selected) {
+            this.CanvasVar.fillStyle = "#38383840";
+            this.CanvasVar.fillRect(e.x, e.y, e.width, e.height);
+          }
+        });
+      }
     },
 
     // for making a new plan

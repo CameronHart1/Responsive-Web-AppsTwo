@@ -81,37 +81,53 @@ import store from "./store/Store.js";
 import data from "raw-loader!./assets/textFiles/ForumPosts.txt";
 import replyData from "raw-loader!./assets/textFiles/ForumReplies.txt";
 import dataPlant from "raw-loader!./assets/textFiles/PlantDB.txt";
-import { PostDeserializer, ReplytDeserializer, PlantsDeserializer } from './assets/JS/AppScript.js';
+import {
+  PostDeserializer,
+  ReplytDeserializer,
+  PlantsDeserializer,
+} from "./assets/JS/AppScript.js";
 
 export default {
   name: "App",
+  // checking for size change then sending to store so can be accessed by everyone
+  created() {
+    window.addEventListener("resize", () => {
+      this.$store.commit("Auth/IsBig", window.innerWidth > 650);
+    });
+  },
   mounted() {
-    PostDeserializer(this,data)
-    ReplytDeserializer(this,replyData)
-    PlantsDeserializer(this,dataPlant)
-    this.$store.commit("UserData/AddUser",{username:"Cameron",password:"LOL",Plans:[String], Journal:[String], Active: {Journal:"",Plan:""} })
+    PostDeserializer(this, data);
+    ReplytDeserializer(this, replyData);
+    PlantsDeserializer(this, dataPlant);
+    this.$store.commit("UserData/AddUser", {
+      username: "Cameron",
+      password: "LOL",
+      Plans: [String],
+      Journal: [String],
+      Active: { Journal: "", Plan: "" },
+    });
 
-//     function DeSerialForum(txt) {
-//       var lineArray = txt.split('\n');
-//       var output = [];
-//       for (var i = 0; i < lineArray.length; i++) {
-//         var data = lineArray[i].slice(0,-1).split(',');
-//         output.push(data);
-//       }
+    //     function DeSerialForum(txt) {
+    //       var lineArray = txt.split('\n');
+    //       var output = [];
+    //       for (var i = 0; i < lineArray.length; i++) {
+    //         var data = lineArray[i].slice(0,-1).split(',');
+    //         output.push(data);
+    //       }
 
-//       return output;
-//     }
-// // ideally the store already has this information from server, but not hosting on server so we are just running this when we mount app
+    //       return output;
+    //     }
+    // // ideally the store already has this information from server, but not hosting on server so we are just running this when we mount app
 
-//     var ToStore = DeSerialForum(data);
-//     for (var i = 0; i < ToStore.length; i++) {
-//       this.$store.commit(
-//         "Posts/AddPost",
-//         {'t':ToStore[i][0],
-//         'tt':ToStore[i][1],
-//         'ttt':ToStore[i][2].split('.'),}
-//       );
-//     }
+    //     var ToStore = DeSerialForum(data);
+    //     for (var i = 0; i < ToStore.length; i++) {
+    //       this.$store.commit(
+    //         "Posts/AddPost",
+    //         {'t':ToStore[i][0],
+    //         'tt':ToStore[i][1],
+    //         'ttt':ToStore[i][2].split('.'),}
+    //       );
+    //     }
   },
 
   computed: {
