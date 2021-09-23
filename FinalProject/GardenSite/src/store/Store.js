@@ -73,8 +73,9 @@ const userData = {
         AddPlan(state, { id, name, plants }) {
             state.PlantPlan.push({ ID: id, Name: name, Plants: plants })
         },
-        AddJournal(state, { id, instructions, conPlan }) {
-            state.PlantJournal.push({ ID: id, Intructions: instructions, ConPlan: conPlan })
+        // conPlan is for connecting to a plan can be "" if its a val, it is id of Plan and name = ""
+        AddJournal(state, { id, name, instructions, conPlan }) {
+            state.PlantJournal.push({ ID: id, Name: name, Intructions: instructions, ConPlan: conPlan })
         },
 
         // Misc

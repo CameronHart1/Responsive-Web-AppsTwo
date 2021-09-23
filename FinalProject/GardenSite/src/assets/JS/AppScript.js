@@ -27,7 +27,7 @@ export function PostDeserializer(instance, data) {
         instance.$store.commit(
             "Posts/AddPost", {
                 't': ToStore[j][0],
-                'tt': ToStore[j][1],
+                'tt': ToStore[j][1].replace("/n", "\n"),
                 'ttt': ToStore[j][2].split('.'),
                 'Reply': ToStore[j][3] || "",
             }
@@ -77,7 +77,7 @@ export function ReplytDeserializer(instance, data) {
         instance.$store.commit(
             "Posts/AddReply", {
                 'id': ToStore[j][0],
-                'comment': ToStore[j][1],
+                'comment': ToStore[j][1].replace("/n", "\r\n"),
                 'replies': ToStore[j][2] || [],
             }
         );

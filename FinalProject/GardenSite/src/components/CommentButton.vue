@@ -15,12 +15,11 @@ import { OnClickOutside } from "@vueuse/components";
       reply
     </button>
     <div v-if="CommentBox">
-      <input
-        type="text"
+      <textarea
         id="CommentTextBox"
         placeholder="Type here"
         v-model="Comment"
-        v-on:keyup.enter="confirmReply"
+        v-on:keyup.enter.exact="confirmReply"
       />
     </div>
   </OnClickOutside>

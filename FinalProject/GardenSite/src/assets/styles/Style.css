@@ -16,10 +16,10 @@
         font-size: 18px;
     }
     /* settings for most of the text */
-     :is(h1, h2, h3, h4, p, a, button, label, switch) {
+     :is(h1, h2, h3, h4, p, a, button, label, switch, pre) {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         font-weight: normal;
-        line-height: 40px;
+        line-height: 20px;
     }
     a {
         font-weight: bold;
@@ -28,9 +28,6 @@
         color: black;
         text-align: center;
         text-decoration: none;
-    }
-    p {
-        line-height: 20px;
     }
     h1 {
         font-size: 34px;
@@ -143,10 +140,10 @@
         background-color: #a793b550;
     }
     /* settings for most of the text */
-     :is(h1, h2, h3, h4, p, a, button, label, switch) {
+     :is(h1, h2, h3, h4, p, a, button, label, switch, pre) {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         font-weight: normal;
-        line-height: 40px;
+        line-height: 18px;
     }
     button {
         font-size: 12px;
@@ -158,9 +155,6 @@
         color: black;
         text-align: center;
         text-decoration: none;
-    }
-    p {
-        line-height: 18px;
     }
     h1 {
         font-size: 30px;

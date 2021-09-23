@@ -5,7 +5,7 @@
     <!-- the Plan users will draw on -->
     <select v-if="ExistingPlans" v-model="Plan">
       <option
-        v-for="plans in UserPlans.Plans"
+        v-for="plans in UserDataCopy.Plans"
         :value="this.$store.getters['UserData/GetPlanByID'](plans).ID"
         :key="plans.id"
       >
@@ -66,12 +66,12 @@ export default {
   },
 
   created() {
-    this.Plan = this.ExistingPlans ? this.UserPlans.Plans[0] : "";
-    let val = this.UserPlans;
+    this.Plan = this.ExistingPlans ? this.UserDataCopy.Plans[0] : "";
+    let val = this.UserDataCopy;
     if (this.ExistingPlans)
       if (val.Active != undefined)
         if (val.Active.Plan != undefined)
-          this.Plan = this.UserPlans.Plans[val.Active.Plan];
+          this.Plan = this.UserDataCopy.Plans[val.Active.Plan];
   },
 
   computed: {
@@ -80,9 +80,9 @@ export default {
       return (this.$store.state.Auth.BigWindow) ? 1 : 2;
     },
     ExistingPlans() {
-      if (this.UserPlans != undefined)
-        if (this.UserPlans.Plans != undefined) {
-          return this.UserPlans.Plans.length >= 0;
+      if (this.UserDataCopy != undefined)
+        if (this.UserDataCopy.Plans != undefined) {
+          return this.UserDataCopy.Plans.length >= 0;
         }
       return false;
     },
@@ -90,7 +90,7 @@ export default {
     PlantList() {
       return this.$store.state.Plants.Plants;
     },
-    UserPlans() {
+    UserDataCopy() {
       var tmp =
         this.$store.getters["UserData/GetUserData"](
           this.$route.params.username
@@ -237,9 +237,9 @@ console.log(x + " " + y)
 
     // for making a new plan
     NewPlan() {
-      let tmpId = this.ExistingPlans ? this.UserPlans.Plans.length : 0;
+      let tmpId = this.ExistingPlans ? this.UserDataCopy.Plans.length : 0;
       let PlanCount = this.ExistingPlans
-        ? " " + this.UserPlans.Plans.length
+        ? " " + this.UserDataCopy.Plans.length
         : "";
 
       this.$store.commit("UserData/AddPlan", {

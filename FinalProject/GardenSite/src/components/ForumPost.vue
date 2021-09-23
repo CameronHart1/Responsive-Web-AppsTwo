@@ -4,7 +4,7 @@
   <div style="min-height: 100px">
       <span  class="ForumP"></span>
     <h4>{{ title }}</h4>
-    <p>{{ text }}</p>
+    <pre>{{ text }}</pre>
   </div>
   
 </template>

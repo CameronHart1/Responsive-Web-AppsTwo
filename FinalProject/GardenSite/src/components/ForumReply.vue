@@ -3,7 +3,7 @@
  need to make prettier later -->
   <div style="min-height: 100px; padding-left: 20px">
       <span  class="ForumP"></span>
-    <p>{{ reply.Comment }}</p>
+    <pre>{{ reply.Comment }}</pre>
     <CommentBut :parentC="this.parentPost" :parentR="this.reply.ID.split(':')[1]" :CommentReply="true" ></CommentBut>
 
     <!-- REcusive elemtn for nested replies -->
