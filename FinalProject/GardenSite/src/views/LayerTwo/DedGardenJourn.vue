@@ -115,14 +115,6 @@ export default {
     // SelectedPlan() {
     //   return this.$store.getters["UserData/GetPlanByID"](this.Plan);
     // },
-
-    // SelectedPlant() {
-    //   if (this.Plant != "")
-    //     return this.$store.state.Plants.Plants.find(
-    //       (e) => e.Name == this.Plant
-    //     );
-    //   return {};
-    // },
   },
 
   watch: {},
@@ -131,7 +123,7 @@ export default {
       this.SelectedDays.find((e) => e.day == day).Enabled =
         !this.SelectedDays.find((e) => e.day == day).Enabled;
     },
-    GetInstructionsFromPlan() {},
+    GetInstructionsFromPlan(){},
   },
 };
 </script>

@@ -11,10 +11,12 @@ import { OnClickOutside } from "@vueuse/components";
     "
   >
     <!-- this button will show / hide the expanded text area component -->
+    <!-- should turn into text editor, so can reuse for post -->
     <button class="CommentClass" v-if="!CommentBox" @click="CommentBox = true">
       reply
     </button>
     <div v-if="CommentBox">
+      <!-- exact only triggers on enter (so not shift enter) -->
       <textarea
         id="CommentTextBox"
         placeholder="Type here"
@@ -28,14 +30,17 @@ import { OnClickOutside } from "@vueuse/components";
 <script>
 export default {
   props: {
+    // Parent Comment
     parentC: {
       type: String,
       required: true,
     },
+    // Parent Reply 
     parentR: {
       type: String,
       required: true,
     },
+    // if this is a reply to the OP (original post) or a reply
     CommentReply:{
       type: Boolean,
       required: true,

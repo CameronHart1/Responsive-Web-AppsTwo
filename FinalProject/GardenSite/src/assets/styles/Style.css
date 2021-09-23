@@ -12,9 +12,6 @@
         padding: 0;
         background-color: #a793b550;
     }
-    button {
-        font-size: 18px;
-    }
     /* settings for most of the text */
      :is(h1, h2, h3, h4, p, a, button, label, switch, pre) {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -28,6 +25,21 @@
         color: black;
         text-align: center;
         text-decoration: none;
+        padding: 15px 50px;
+    }
+    button {
+        border: none;
+        font-size: 18px;
+        background-color: #CEB7DE40;
+        /* Purple Inactive */
+        border-radius: 34px;
+        color: black;
+        cursor: pointer;
+        margin: 15px 1%;
+        padding: 15px 50px;
+    }
+    button:hover {
+        background-color: #CEB7DE60;
     }
     h1 {
         font-size: 34px;
