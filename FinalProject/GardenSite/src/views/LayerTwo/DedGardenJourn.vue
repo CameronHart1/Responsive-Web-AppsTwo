@@ -13,10 +13,7 @@ will either have name or con plan so the message text works
         :value="Entry"
         :key="Entry.id"
       >
-        {{ this.$store.getters["UserData/GetJournalByID"](Entry).Name}}
-        {{
-          (this.$store.getters["UserData/GetPlanByID"](PlansWithJournals[Entry]) != undefined)? this.$store.getters["UserData/GetPlanByID"](PlansWithJournals[Entry]).Name:""
-        }}
+        {{ getName(Entry) }}
       </option>
     </select>
   </div>
@@ -32,15 +29,16 @@ will either have name or con plan so the message text works
     <div
       v-if="
         ExistingPlans &&
-        (this.PlansWithJournals.filter(e => e != undefined).length >= this.UserDataCopy.Plans.length ||
+        (this.PlansWithJournals.map((e) => e != undefined).length >=
+          this.UserDataCopy.Plans.length ||
           this.PlansWithJournals[0] == 'None')
       "
     >
       <h3>Make a Journal For a Garden Plan</h3>
       <select v-model="Plan">
         <option
-          v-for="plans in UserDataCopy.Plans.filter(
-            (e) => this.PlansWithJournals.indexOf(e.ID) == -1
+          v-for="plans in UserDataCopy.Plans.filter(e => 
+              !this.PlansWithJournals.includes(e)
           )"
           :value="plans"
           :key="plans.id"
@@ -171,12 +169,14 @@ export default {
     PlansWithJournals() {
       return this.ExistingJournal
         ? this.UserDataCopy.Journals.map((e) => {
+          let tmp = this.$store.getters["UserData/GetJournalByID"](e)
+          console.log(tmp)
             if (
-              this.$store.getters["UserData/GetJournalByID"](e).ConPlan !=
+              tmp.ConPlan !=
               undefined
             )
-              this.$store.getters["UserData/GetJournalByID"](e).ConPlan;
-            else "";
+              return this.$store.getters["UserData/GetJournalByID"](e).ConPlan;
+            else  return "";
           })
         : ["None"];
     },
@@ -203,6 +203,13 @@ export default {
   },
 
   methods: {
+    getName(Entry) {
+      if (this.PlansWithJournals[Entry] !== "") {
+      return this.$store.getters["UserData/GetPlanByID"](this.PlansWithJournals[Entry]).Name;
+      }else
+      return this.$store.getters["UserData/GetJournalByID"](Entry).Name;
+    },
+
     DayToggle(day) {
       let tmp = !this.SelectedDays.find((e) => e.day == day).Enabled;
       this.SelectedDays.forEach((e) => (e.Enabled = false));

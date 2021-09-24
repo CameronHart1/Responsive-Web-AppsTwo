@@ -1,7 +1,7 @@
 <template>
   <div id="PlanBod">
     <div>
-      <h2 style="text-align: center">Garden Plan</h2>
+      <h2 style="text-align: center; margin-bottom: 20px;">Garden Plan</h2>
       <div>
         <select v-if="ExistingPlans" v-model="Plan">
           <option
