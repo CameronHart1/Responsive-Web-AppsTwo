@@ -23,13 +23,13 @@ will either have name or con plan so the message text works
     Make a New Journal
   </button>
 
-  <!-- dialouge for making a new plane -->
+  <!-- dialouge for making a new Journal -->
   <div v-if="CreateNew">
     <!-- from plan -->
     <div
       v-if="
         ExistingPlans &&
-        (this.PlansWithJournals.map((e) => e != undefined).length >=
+        (this.PlansWithJournals.map((e) => e != '').length >=
           this.UserDataCopy.Plans.length ||
           this.PlansWithJournals[0] == 'None')
       "
@@ -116,7 +116,7 @@ will either have name or con plan so the message text works
         @click="
           Instructions[
             this.SelectedDays.findIndex((e) => e.Enabled == true)
-          ].push({ Plant: plant.Name, Content: ' ' })
+          ].push({ Plant: plant.Name, Content: ' ' }); this.AddingPlantBut = false
         "
         :key="plant.id"
       >
