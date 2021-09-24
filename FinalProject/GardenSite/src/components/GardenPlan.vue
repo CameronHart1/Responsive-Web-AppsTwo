@@ -100,7 +100,7 @@ export default {
       if (this.Shapes.length >= 0 && this.CanvasVar.canvas != undefined) {
         this.CanvasVar.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.Shapes.forEach((e) => {
-          this.CanvasVar.fillStyle = e.plant.Color;
+          this.CanvasVar.fillStyle = this.$store.getters["Plants/PlantByName"](e.plant).Color;
           this.CanvasVar.fillRect(
             e.x * this.scale,
             e.y * this.scale,

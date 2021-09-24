@@ -1,0 +1,49 @@
+:is(.RightBut, .RightButEn, .MiddleBut, .MiddleButEn, .LeftBut, .LeftButEn) {
+    padding-left: 7px;
+    padding-right: 7px;
+    margin-left: 0;
+    margin-right: 0;
+    font-size: 17px;
+    transition: 0.2s ease;
+}
+
+:is( .MiddleButEn, .LeftBut, .LeftButEn):hover {
+    background-color: #CEB7DE55
+}
+
+:is(.LeftButEn, .RightButEn, .MiddleButEn) {
+    background-color: #CEB7DE70
+}
+
+:is(.MiddleBut, .MiddleButEn) {
+    border-radius: 0px;
+}
+
+:is(.LeftBut, .LeftButEn) {
+    border-radius: 12px 0 0 12px;
+}
+
+:is(.RightBut, .RightButEn) {
+    border-radius: 0 12px 12px 0;
+}
+
+#ButtonCont {
+    display: flex;
+    margin-left: -5%;
+    margin-right: -5%;
+    width: 110%;
+    justify-content: stretch;
+}
+
+
+/* .LeftButEn {}
+
+.RightButEn {}
+
+.MiddleButEn {}
+
+.LeftBut {}
+
+.RightBut {}
+
+.MiddleBut {} */

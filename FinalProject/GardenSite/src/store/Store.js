@@ -42,7 +42,7 @@ const Post = {
     },
 }
 
-// data for plants
+// data for plants although plan stores a copy
 const plants = {
     namespaced: true,
     state() {
@@ -53,6 +53,11 @@ const plants = {
             state.Plants.push({ Name: name, Color: color, Instructions: instructions });
         },
     },
+    getters: {
+        PlantByName: (state) => (name) => {
+            return state.Plants.find(e => e.Name == name);
+        },
+    }
 }
 
 // for data that is ascosiated with users (login getting token, stored plans or journals)
@@ -75,16 +80,25 @@ const userData = {
         },
         // conPlan is for connecting to a plan can be "" if its a val, it is id of Plan and name = ""
         AddJournal(state, { id, name, instructions, conPlan }) {
-            state.PlantJournal.push({ ID: id, Name: name, Intructions: instructions, ConPlan: conPlan })
+            state.PlantJournal.push({ ID: id, Name: name, Instructions: instructions, ConPlan: conPlan })
         },
 
-        // Misc
+        // Updating Lists
+        UpdateUserJournal(state, { username, journalId }) {
+            if (state.User[state.User.findIndex(e => e.Username == username)].Journal == undefined)
+                state.User[state.User.findIndex(e => e.Username == username)].Journal = [journalId];
+            else
+                state.User[state.User.findIndex(e => e.Username == username)].Journal.push(journalId);
+        },
+
         UpdateUserPlan(state, { username, planId }) {
             if (state.User[state.User.findIndex(e => e.Username == username)].Plans == undefined)
                 state.User[state.User.findIndex(e => e.Username == username)].Plans = [planId];
             else
                 state.User[state.User.findIndex(e => e.Username == username)].Plans.push(planId);
         },
+
+        // saving / updating list entries
         SaveUserPlan(state, { plan, id }) {
             state.PlantPlan[state.PlantPlan.findIndex(e => e.ID == id)] = plan;
         },

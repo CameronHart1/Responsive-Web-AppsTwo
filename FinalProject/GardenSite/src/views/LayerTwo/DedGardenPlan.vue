@@ -103,9 +103,7 @@ export default {
 
     SelectedPlant() {
       if (this.Plant != "")
-        return this.$store.state.Plants.Plants.find(
-          (e) => e.Name == this.Plant
-        );
+        return this.$store.getters["Plants/PlantByName"](this.Plant)
       return {};
     },
   },
@@ -139,7 +137,6 @@ export default {
       var rect = evnt.target.getBoundingClientRect();
       var x = (evnt.clientX  - rect.left ) * this.Scale;
       var y = (evnt.clientY  - rect.top ) * this.Scale;
-console.log(x + " " + y) 
       // using a switch to control the tools
       switch (this.Tool) {
         case "Draw":
@@ -176,7 +173,7 @@ console.log(x + " " + y)
             y: this.xy.y,
             width: x - this.xy.x,
             height: y - this.xy.y,
-            plant: this.SelectedPlant,
+            plant: this.Plant,
           });
         } else {
           this.Shapes = [
@@ -185,7 +182,7 @@ console.log(x + " " + y)
               y: this.xy.y,
               width: x - this.xy.x,
               height: y - this.xy.y,
-              plant: this.SelectedPlant,
+              plant: this.Plant,
             },
           ];
         }
@@ -223,7 +220,7 @@ console.log(x + " " + y)
       if (this.Shapes.length >= 0 && this.CanvasVar.canvas != undefined) {
         this.CanvasVar.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.Shapes.forEach((e) => {
-          this.CanvasVar.fillStyle = e.plant.Color;
+          this.CanvasVar.fillStyle = this.$store.getters["Plants/PlantByName"](e.plant).Color;
           this.CanvasVar.fillRect(e.x, e.y, e.width, e.height);
 
           //all highlight selected
