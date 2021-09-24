@@ -37,8 +37,8 @@ will either have name or con plan so the message text works
       <h3>Make a Journal For a Garden Plan</h3>
       <select v-model="Plan">
         <option
-          v-for="plans in UserDataCopy.Plans.filter(e => 
-              !this.PlansWithJournals.includes(e)
+          v-for="plans in UserDataCopy.Plans.filter(
+            (e) => !this.PlansWithJournals.includes(e)
           )"
           :value="plans"
           :key="plans.id"
@@ -88,6 +88,7 @@ will either have name or con plan so the message text works
         {{ this.$store.state.Auth.BigWindow ? Val.day : Val.short }}
       </button>
     </div>
+    <!-- the day buts -->
     <div v-if="SelectedDays.findIndex((e) => e.Enabled == true) > -1">
       <template
         v-for="int in Instructions[
@@ -104,6 +105,24 @@ will either have name or con plan so the message text works
         </div>
       </template>
     </div>
+
+    <!-- adding new plant buttons -->
+    <button v-if="AddingPlantBut == false" @click="AddingPlantBut = true">
+      Add New Plant
+    </button>
+    <div v-if="AddingPlantBut == true">
+      <button
+        v-for="plant in PlantList"
+        @click="
+          Instructions[
+            this.SelectedDays.findIndex((e) => e.Enabled == true)
+          ].push({ Plant: plant.Name, Content: ' ' })
+        "
+        :key="plant.id"
+      >
+        {{ plant.Name }}
+      </button>
+    </div>
   </div>
 </template>
 
@@ -111,6 +130,7 @@ will either have name or con plan so the message text works
 export default {
   data() {
     return {
+      AddingPlantBut: false,
       Journal: "None",
       linkedJournal: false,
       Plan: "",
@@ -140,6 +160,18 @@ export default {
   },
 
   computed: {
+    // ref to plant list
+    PlantList() {
+      if (this.SelectedDays.findIndex((e) => e.Enabled == true) >= 0) {
+        let tmp = this.$store.state.Plants.Plants;
+        let TmpMap = this.Instructions[
+          this.SelectedDays.findIndex((e) => e.Enabled == true)
+        ].map((e) => e.Plant);
+        console.log(TmpMap);
+        return tmp.filter((e) => !TmpMap.includes(e.Name));
+      }
+      return {};
+    },
     // If the user Has Plans
     ExistingPlans() {
       if (this.UserDataCopy != undefined)
@@ -169,14 +201,10 @@ export default {
     PlansWithJournals() {
       return this.ExistingJournal
         ? this.UserDataCopy.Journals.map((e) => {
-          let tmp = this.$store.getters["UserData/GetJournalByID"](e)
-          console.log(tmp)
-            if (
-              tmp.ConPlan !=
-              undefined
-            )
+            let tmp = this.$store.getters["UserData/GetJournalByID"](e);
+            if (tmp.ConPlan != undefined)
               return this.$store.getters["UserData/GetJournalByID"](e).ConPlan;
-            else  return "";
+            else return "";
           })
         : ["None"];
     },
@@ -205,9 +233,10 @@ export default {
   methods: {
     getName(Entry) {
       if (this.PlansWithJournals[Entry] !== "") {
-      return this.$store.getters["UserData/GetPlanByID"](this.PlansWithJournals[Entry]).Name;
-      }else
-      return this.$store.getters["UserData/GetJournalByID"](Entry).Name;
+        return this.$store.getters["UserData/GetPlanByID"](
+          this.PlansWithJournals[Entry]
+        ).Name;
+      } else return this.$store.getters["UserData/GetJournalByID"](Entry).Name;
     },
 
     DayToggle(day) {

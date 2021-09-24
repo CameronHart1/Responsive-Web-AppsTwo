@@ -86,7 +86,6 @@ export default {
         }
       return false;
     },
-
     PlantList() {
       return this.$store.state.Plants.Plants;
     },

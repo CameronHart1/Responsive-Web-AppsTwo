@@ -33,7 +33,7 @@ export default {
     // day of week as int
     WeekDay() {
       const d = new Date();
-      return d.getDay();
+      return d.getDay() - 1;
     },
     ExistingJournal() {
       if (this.UserDataCopy != undefined)
